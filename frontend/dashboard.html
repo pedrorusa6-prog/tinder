@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mural de Recados — Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ══ NAVBAR ══════════════════════════════════════════════ -->
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <span class="brand-icon">📌</span>
+      Mural de Recados
+    </div>
+    <div class="navbar-user">
+      Olá, <strong id="usernameDisplay">—</strong>
+      <button class="btn-logout" id="logoutBtn">Sair</button>
+    </div>
+  </nav>
+
+  <!-- ══ DASHBOARD GRID ══════════════════════════════════════ -->
+  <main class="dashboard">
+
+    <!-- ── LEFT: Mensagens Recebidas ────────────────────────── -->
+    <section class="panel messages-panel">
+      <div class="panel-header">
+        <h2 class="panel-title">
+          <span class="icon">📥</span>
+          Meus Recados
+          <span class="badge" id="messagesCount">0</span>
+        </h2>
+        <button class="btn-icon" id="refreshBtn" title="Atualizar mensagens">🔄</button>
+      </div>
+
+      <ul class="messages-list" id="messagesList">
+        <li class="loading-item">Carregando mensagens...</li>
+      </ul>
+    </section>
+
+    <!-- ── RIGHT: Enviar Recado ──────────────────────────────── -->
+    <section class="panel compose-panel">
+      <div class="panel-header">
+        <h2 class="panel-title">
+          <span class="icon">✉️</span>
+          Enviar Recado
+        </h2>
+      </div>
+
+      <div class="panel-body">
+        <form id="composeForm" novalidate>
+
+          <div class="form-group">
+            <label for="recipientSelect">Destinatário</label>
+            <select id="recipientSelect" required>
+              <option value="" disabled selected>Carregando estudantes...</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="messageContent">Mensagem</label>
+            <div class="textarea-wrap">
+              <textarea
+                id="messageContent"
+                name="messageContent"
+                placeholder="Escreva seu recado aqui..."
+                maxlength="1000"
+                required
+              ></textarea>
+              <span class="char-count" id="charCount">0/1000</span>
+            </div>
+          </div>
+
+          <p id="sendError"   class="alert alert-error   hidden"></p>
+          <p id="sendSuccess" class="alert alert-success hidden"></p>
+
+          <button type="submit" class="btn-send" id="sendBtn">Enviar Recado</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
